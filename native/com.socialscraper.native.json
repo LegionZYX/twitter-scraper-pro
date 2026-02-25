@@ -1,0 +1,9 @@
+{
+  "name": "com.socialscraper.native",
+  "description": "Social Scraper Native Messaging Host",
+  "path": "launcher.py",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://__YOUR_EXTENSION_ID__/"
+  ]
+}

@@ -1,0 +1,30 @@
+E:\Vibe coding\intel\twitter-scraper-extension-v2\backend\server.py:107: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("startup")
+E:\Vibe coding\intel\twitter-scraper-extension-v2\backend\server.py:119: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("shutdown")
+[32m2026-02-25 08:09:06.439[0m | [1mINFO    [0m | [36m__main__[0m:[36mmain[0m:[36m372[0m - [1mStarting Twitter Scraper API on 127.0.0.1:8769[0m
+INFO:     Started server process [24792]
+INFO:     Waiting for application startup.
+[32m2026-02-25 08:09:07.308[0m | [33m[1mWARNING [0m | [36mdatabase[0m:[36m_create_schema[0m:[36m167[0m - [33m[1mSchema may already exist: Catalog exception: INTEGER is neither an internal type nor a user defined type.[0m
+[32m2026-02-25 08:09:07.308[0m | [33m[1mWARNING [0m | [36mdatabase[0m:[36m_create_schema[0m:[36m167[0m - [33m[1mSchema may already exist: Catalog exception: INTEGER is neither an internal type nor a user defined type.[0m
+[32m2026-02-25 08:09:07.313[0m | [33m[1mWARNING [0m | [36mdatabase[0m:[36m_create_schema[0m:[36m167[0m - [33m[1mSchema may already exist: Binder exception: Table Event does not exist.[0m
+[32m2026-02-25 08:09:07.329[0m | [33m[1mWARNING [0m | [36mdatabase[0m:[36m_init_default_cleanup_rules[0m:[36m217[0m - [33m[1mCleanup rule may already exist: Binder exception: Table CleanupRule does not exist.[0m
+[32m2026-02-25 08:09:07.330[0m | [33m[1mWARNING [0m | [36mdatabase[0m:[36m_init_default_cleanup_rules[0m:[36m217[0m - [33m[1mCleanup rule may already exist: Binder exception: Table CleanupRule does not exist.[0m
+[32m2026-02-25 08:09:07.330[0m | [33m[1mWARNING [0m | [36mdatabase[0m:[36m_init_default_cleanup_rules[0m:[36m217[0m - [33m[1mCleanup rule may already exist: Binder exception: Table CleanupRule does not exist.[0m
+[32m2026-02-25 08:09:07.331[0m | [1mINFO    [0m | [36mdatabase[0m:[36minit[0m:[36m28[0m - [1mSocialScraperKG initialized at database\twitter_scraper[0m
+[32m2026-02-25 08:09:07.331[0m | [1mINFO    [0m | [36mserver[0m:[36mstartup_event[0m:[36m116[0m - [1mSocial Scraper API started[0m
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8769 (Press CTRL+C to quit)
+INFO:     127.0.0.1:14536 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:14552 - "GET /api/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:3206 - "GET /health HTTP/1.1" 200 OK

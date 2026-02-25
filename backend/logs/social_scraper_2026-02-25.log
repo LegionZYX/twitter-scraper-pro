@@ -1,0 +1,24 @@
+08:09:06 | INFO | Starting Twitter Scraper API on 127.0.0.1:8769
+08:09:07 | DEBUG | Created schema: 
+        CREATE NODE TABLE IF NOT EXISTS Post (
+  ...
+08:09:07 | DEBUG | Created schema: 
+        CREATE NODE TABLE IF NOT EXISTS FilteredP...
+08:09:07 | DEBUG | Created schema: 
+        CREATE NODE TABLE IF NOT EXISTS Discovery...
+08:09:07 | WARNING | Schema may already exist: Catalog exception: INTEGER is neither an internal type nor a user defined type.
+08:09:07 | WARNING | Schema may already exist: Catalog exception: INTEGER is neither an internal type nor a user defined type.
+08:09:07 | DEBUG | Created schema: 
+        CREATE NODE TABLE IF NOT EXISTS ArchivedP...
+08:09:07 | DEBUG | Created schema: 
+            CREATE REL TABLE IF NOT EXISTS FILTER...
+08:09:07 | DEBUG | Created schema: 
+            CREATE REL TABLE IF NOT EXISTS ANALYZ...
+08:09:07 | WARNING | Schema may already exist: Binder exception: Table Event does not exist.
+08:09:07 | DEBUG | Created schema: 
+            CREATE REL TABLE IF NOT EXISTS ARCHIV...
+08:09:07 | WARNING | Cleanup rule may already exist: Binder exception: Table CleanupRule does not exist.
+08:09:07 | WARNING | Cleanup rule may already exist: Binder exception: Table CleanupRule does not exist.
+08:09:07 | WARNING | Cleanup rule may already exist: Binder exception: Table CleanupRule does not exist.
+08:09:07 | INFO | SocialScraperKG initialized at database\twitter_scraper
+08:09:07 | INFO | Social Scraper API started

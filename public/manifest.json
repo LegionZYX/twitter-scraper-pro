@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "Social Scraper Pro v2",
+  "version": "2.1.0",
+  "description": "智能抓取 Twitter/Reddit 帖子，GLM-5 深度筛选，多分类管理，分页浏览",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://twitter.com/*",
+    "https://x.com/*",
+    "https://www.reddit.com/*",
+    "https://reddit.com/*",
+    "https://api.openai.com/*",
+    "https://api.deepseek.com/*",
+    "https://open.bigmodel.cn/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Social Scraper Pro v2"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://twitter.com/*", "https://x.com/*", "https://www.reddit.com/*", "https://reddit.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "options.html"
+}
