@@ -1,7 +1,7 @@
 {
   "name": "twitter-scraper-extension-v2",
-  "version": "2.1.0",
-  "description": "智能抓取 Twitter/Reddit 帖子，GLM-5 深度筛选，多分类管理",
+  "version": "2.2.0",
+  "description": "智能抓取 Twitter/Reddit 帖子，支持离线使用，自动同步到 KuzuDB 知识库",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,6 +10,10 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:llm": "tsx test-llm.ts",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:report": "playwright show-report",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -17,11 +21,13 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@types/chrome": "^0.0.268",
     "@types/node": "^20.11.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "@vitejs/plugin-react": "^4.2.0",
+    "chromium": "^3.0.3",
     "tsx": "^4.7.0",
     "typescript": "^5.3.0",
     "vite": "^5.0.0"
