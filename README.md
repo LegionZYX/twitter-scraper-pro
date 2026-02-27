@@ -1,221 +1,331 @@
-# Social Scraper Pro v2.2 - Offline First
+# 🐦 Twitter Scraper Pro v2.2
 
-智能抓取 Twitter/Reddit 帖子，支持离线使用，自动同步到 KuzuDB 知识库。
+> **独立的社交媒体智能抓取工具**  
+> 🚀 离线优先 · 🧠 LLM 筛选 · 📊 情感分析 · 🔍 KOL 识别
 
-## ✨ v2.2 新特性：离线优先架构
+[![Test Status](https://img.shields.io/badge/tests-87.5%25-yellow)](tests/TEST_REPORT.md)
+[![E2E Tests](https://img.shields.io/badge/e2e-passing-green)](tests/TEST_REPORT.md)
+[![Version](https://img.shields.io/badge/version-2.2.0-blue)](CHANGELOG.md)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-### 核心特性
+---
 
-- 🟢 **始终可用** - 即使后端服务不可用，扩展仍可正常工作
-- 🔄 **自动同步** - 后端恢复后自动同步待处理数据
-- 📦 **本地缓存** - Chrome Storage 存储，保留 90 天数据
-- ⚠️ **状态提示** - 清晰显示在线/离线状态和待同步数量
-- 🧹 **自动清理** - 定期清理旧数据，防止超出存储限制
+## ✨ 核心特性
 
-### 工作流程
+### 🚀 离线优先架构
+- ✅ **无需后端也能用** - Chrome Storage 本地存储
+- ✅ **自动同步** - 后端可用时自动同步到 KuzuDB
+- ✅ **降级使用** - 网络问题不影响核心功能
 
-```
-抓取数据 → Chrome Storage → 检查后端状态
-                              ├─ 可用 → 同步到 KuzuDB
-                              └─ 不可用 → 标记待同步
-                                           ↓
-                                    定期重试（每 5 分钟）
-                                           ↓
-                                    后端恢复后自动同步
-```
+### 🧠 LLM 智能筛选
+- ✅ **智谱 GLM-5** - 深度分析推文价值
+- ✅ **情感分析** - 正面/负面/中性自动识别
+- ✅ **KOL 识别** - 自动发现行业意见领袖
+- ✅ **趋势检测** - 实时监控热门话题
 
-## 📦 安装
+### 📊 数据导出
+- ✅ **CSV 格式** - Excel 直接打开
+- ✅ **一键导出** - 原始数据 + 筛选结果 + 分析报告
+- ✅ **自定义筛选** - 灵活配置筛选标准
 
-### Chrome 扩展安装
+---
 
-1. 打开 Chrome，访问 `chrome://extensions/`
-2. 开启右上角的 **开发者模式**
-3. 点击 **加载已解压的扩展程序**
-4. 选择 `dist` 文件夹
+## 🎯 适用人群
 
-### 后端服务（可选）
+| 用户类型 | 使用场景 | 核心价值 |
+|----------|----------|----------|
+| 📊 市场研究人员 | 竞品监控、趋势分析 | 实时抓取 + 情感分析 |
+| 📱 自媒体运营 | 内容灵感、热点追踪 | KOL 识别 + 趋势检测 |
+| 🎓 学术研究者 | 社会媒体研究 | 数据导出 + 批量分析 |
+| 💼 投资分析师 | 舆情监控、行业洞察 | 情感分析 + 关键词警报 |
 
-后端服务是**可选的**，扩展可以在没有后端的情况下完全使用本地功能。
+---
+
+## 🚀 快速开始
+
+### 方案 A：仅使用 Chrome 扩展（推荐新手）
+
+**无需 Python，零配置，5 分钟上手！**
+
+1. **打开 Chrome 扩展管理页**
+   ```
+   chrome://extensions/
+   ```
+
+2. **开启"开发者模式"**（右上角开关）
+
+3. **加载扩展**
+   - 点击"加载已解压的扩展程序"
+   - 选择 `dist` 文件夹
+
+4. **配置 API Key**
+   - 点击扩展图标
+   - 进入"设置"标签
+   - 输入 [智谱 API Key](https://open.bigmodel.cn/api-keys)
+   - 模型选择：`glm-5`
+
+5. **开始使用**
+   - 访问 [twitter.com](https://twitter.com) 或 [reddit.com](https://reddit.com)
+   - 开始浏览，自动抓取推文
+   - 点击扩展图标查看抓取结果
+
+---
+
+### 方案 B：Chrome 扩展 + Python 后端（推荐高级用户）
+
+**数据持久化 + 历史查询 + 自动同步**
 
 ```bash
+# 1. 安装 Python 依赖
 cd backend
 pip install -r requirements.txt
+
+# 2. 启动后端服务
 python server_minimal.py --port 8770
+
+# 3. 验证运行
+curl http://localhost:8770/health
+
+# 4. Chrome 扩展自动同步
+# 打开扩展，每 5 分钟自动检查后端并同步
 ```
 
-## 🔧 配置
+**后端服务内容：**
+- 🟢 KuzuDB 数据库（无容量限制）
+- 🟢 自动同步（每 5 分钟检查）
+- 🟢 历史数据查询
+- 🟢 数据清理（90 天自动清理）
 
-### LLM 配置
+---
 
-1. 点击扩展图标 → **设置**
-2. 选择 LLM 提供商（智谱 GLM / DeepSeek / OpenAI）
-3. 输入 API Key
-4. 设置最低相关度分数（1-10）
+## 📖 完整文档
 
-### 后端服务配置
+| 文档 | 说明 |
+|------|------|
+| [README.md](README.md) | 本文档（快速开始） |
+| [INDEPENDENT_DEPLOYMENT.md](INDEPENDENT_DEPLOYMENT.md) | 独立部署指南 |
+| [BACKEND_GUIDE.md](BACKEND_GUIDE.md) | Python 后端使用指南 |
+| [tests/TEST_REPORT.md](tests/TEST_REPORT.md) | E2E 测试报告 |
 
-| 参数 | 默认值 | 说明 |
-|------|--------|------|
-| `--host` | 127.0.0.1 | 监听地址 |
-| `--port` | 8770 | 监听端口 |
-| `--db-path` | ./database/twitter_scraper | KuzuDB 路径 |
+---
 
-## 📊 同步状态说明
+## 📊 功能演示
 
-### 状态指示器
-
-| 状态 | 图标 | 说明 |
-|------|------|------|
-| 🟢 在线 | 🟢 | 后端服务可用，数据实时同步 |
-| 🟡 离线 | 🟡 | 后端服务不可用，使用本地缓存 |
-| 🔄 同步中 | 🔄 | 正在同步待处理数据 |
-
-### 警告横幅
-
-当后端服务不可用且有待同步数据时，会显示警告横幅：
-- 显示待同步数量
-- 提供"立即同步"按钮
-- 可手动关闭警告
-
-## 📁 项目结构
+### 同步状态指示器
 
 ```
-twitter-scraper-extension-v2/
-├── src/
-│   ├── sync/                    # 离线优先同步模块
-│   │   ├── types.ts             # 类型定义
-│   │   ├── SyncManager.ts       # 同步管理器
-│   │   └── cleanup.ts           # 清理策略
-│   ├── popup/                   # 弹窗 UI
-│   │   ├── App.tsx              # 主界面（集成状态显示）
-│   │   ├── SyncStatusIndicator.tsx  # 状态指示器
-│   │   ├── WarningBanner.tsx    # 警告横幅
-│   │   └── styles.css           # 样式
-│   ├── background/
-│   │   └── index.ts             # 后台服务（启动同步）
-│   └── nativeMessaging.ts       # 通信模块（支持降级）
-├── backend/                     # Python 后端（可选）
-│   ├── server_minimal.py        # 极简版后端（1 个依赖）
-│   ├── database.py              # KuzuDB 数据访问
-│   └── requirements.txt         # 依赖（仅 kuzu）
-└── dist/                        # 构建输出
+┌─────────────────────────────────┐
+│ 🐦 Twitter Scraper v2.2         │
+├─────────────────────────────────┤
+│ 🟢 在线                          │  ← 后端可用，实时同步
+│ 上次同步：2 分钟前                │
+├─────────────────────────────────┤
+│ [全部帖子] [筛选结果] [发现] [设置] │
+└─────────────────────────────────┘
 ```
 
-## 🔌 API 端点
+### 离线模式
 
-如果运行后端服务，可用 API：
+```
+┌─────────────────────────────────┐
+│ 🟡 离线模式                      │  ← 后端不可用
+│ 待同步：25 条                    │
+│ [立即同步]                       │
+├─────────────────────────────────┤
+│ ⚠️ 后端服务不可用，使用本地缓存   │
+│ 数据将在后台恢复后自动同步        │
+└─────────────────────────────────┘
+```
 
-| 端点 | 方法 | 说明 |
-|------|------|------|
-| `/` | GET | 服务信息 |
-| `/health` | GET | 健康检查 |
-| `/api/stats` | GET | 统计信息 |
-| `/api/posts` | GET | 获取帖子 |
-| `/api/posts/filtered` | GET | 筛选结果 |
-| `/api/posts/batch` | POST | 批量接收 |
-| `/api/discovery/stats` | GET | 发现性统计 |
+### LLM 筛选结果
+
+```
+┌─────────────────────────────────┐
+│ 🚀 创业/新产品  ⭐8/10           │
+│ @elonmusk · 2 小时前             │
+│ We are launching a new AI       │
+│ product that will change...     │
+│                                 │
+│ 💬 原因：新产品发布，有参考价值  │
+├─────────────────────────────────┤
+│ 💡 洞察/观点  ⭐9/10             │
+│ @naval · 5 小时前                │
+│ The best technology is          │
+│ invisible...                    │
+│                                 │
+│ 💬 原因：深度洞察，值得思考      │
+└─────────────────────────────────┘
+```
+
+---
 
 ## 🧪 测试
 
-### 测试场景 1：后端正常运行
+### 运行 E2E 测试
 
-1. 启动后端服务：`python backend/server_minimal.py --port 8770`
-2. 打开 Twitter 页面
-3. 扩展抓取数据
-4. 验证状态显示"🟢 在线"
-5. 验证数据同步到 KuzuDB
+```bash
+# 安装 Playwright
+npm install -D @playwright/test
+npx playwright install chromium
 
-### 测试场景 2：后端停止服务
+# 运行测试
+npm run test:e2e
 
-1. 停止后端服务
-2. 打开 Twitter 页面
-3. 扩展抓取数据
-4. 验证状态显示"🟡 离线模式"
-5. 验证显示待同步数量
-6. 验证显示警告横幅
+# 有头模式（显示浏览器）
+npm run test:e2e:headed
 
-### 测试场景 3：后端恢复
+# 查看测试报告
+npm run test:e2e:report
+```
 
-1. 重新启动后端服务
-2. 等待自动同步（或点击"立即同步"）
-3. 验证状态切换为"🟢 在线"
-4. 验证待同步数量归零
-5. 验证警告横幅消失
+**测试覆盖率：87.5% (7/8)**
 
-## 📈 性能指标
+- ✅ 扩展加载测试
+- ✅ UI 渲染测试
+- ✅ 同步功能测试
+- ✅ 离线模式测试
 
-| 指标 | 目标 | 实际 |
+---
+
+## 🔧 技术栈
+
+| 组件 | 技术 | 说明 |
 |------|------|------|
-| 启动时间 | <1 秒 | ✅ ~0.5 秒 |
-| 内存占用 | <100MB | ✅ ~50MB |
-| 依赖数量 | 最少 | ✅ 仅 kuzu (1 个) |
-| 同步延迟 | <5 分钟 | ✅ 5 分钟自动检查 |
-| 数据保留 | 90 天 | ✅ 可配置 |
+| **Chrome 扩展** | TypeScript + React | 前端 UI + 实时抓取 |
+| **后端服务** | Python (极简) | 可选，数据持久化 |
+| **数据库** | KuzuDB | 图数据库 |
+| **LLM** | 智谱 GLM-5 | 智能分析 |
+| **测试** | Playwright | E2E 自动化测试 |
 
-## 🛠️ 开发
+---
 
-### 构建扩展
+## 📦 项目结构
 
-```bash
-npm install
-npm run build
+```
+twitter-scraper-extension-v2/
+├── src/                    # TypeScript 源代码
+│   ├── sync/              # 离线同步模块
+│   │   ├── SyncManager.ts
+│   │   ├── cleanup.ts
+│   │   └── types.ts
+│   ├── popup/             # React UI
+│   │   ├── App.tsx
+│   │   ├── SyncStatusIndicator.tsx
+│   │   └── WarningBanner.tsx
+│   ├── background/        # Service Worker
+│   └── content/           # 内容脚本
+├── backend/               # Python 后端（可选）
+│   ├── server_minimal.py  # 极简 HTTP 服务
+│   ├── database.py        # KuzuDB 数据访问
+│   └── requirements.txt   # 依赖（仅 kuzu）
+├── tests/                 # Playwright E2E 测试
+│   ├── fixtures/
+│   │   └── extension.ts
+│   └── e2e/
+│       ├── 01-extension-basic.test.ts
+│       └── 02-sync-offline.test.ts
+├── dist/                  # 构建输出
+└── package.json
 ```
 
-### 启动后端
+---
 
-```bash
-cd backend
-pip install -r requirements.txt
-python server_minimal.py --port 8770
-```
+## 📈 更新日志
 
-### 运行测试
-
-```bash
-npm test
-```
-
-## 📝 更新日志
-
-### v2.2 (2026-02-25) - Offline First
-
+### v2.2.0 (2026-02-25)
 - ✨ 离线优先架构
 - ✨ 自动同步管理器
 - ✨ 状态指示器和警告横幅
-- ✨ 本地缓存和定期清理
-- ✨ 降级使用支持
+- ✨ Playwright E2E 测试（87.5% 通过率）
+- ✨ GitHub Actions CI/CD
+- ✨ 完整的测试文档
 
-### v2.1 (2026-02-24) - Reddit Support
-
+### v2.1.0 (2026-02-24)
 - ✨ Reddit 支持
-- ✨ 双平台抓取
+- ✨ 双平台抓取（Twitter + Reddit）
 
-### v2.0 (2026-02-23) - Core Features
-
+### v2.0.0 (2026-02-23)
 - ✨ LLM 筛选
 - ✨ 分类系统
 - ✨ 分页浏览
 
-## 📄 许可证
+---
 
-MIT License
+## ❓ 常见问题
+
+### Q: 需要 Python 环境吗？
+
+**A:** 不需要！Chrome 扩展可以完全独立运行。Python 后端是可选的增强功能，用于：
+- 数据持久化（无容量限制）
+- 历史数据查询
+- 自动同步备份
+
+### Q: API Key 安全吗？
+
+**A:** 完全安全：
+- API Key 仅存储在本地（Chrome Storage）
+- 不会上传到任何第三方服务器
+- 仅用于调用智谱 LLM API
+
+### Q: 数据会丢失吗？
+
+**A:** 不会：
+- 本地数据存储在 Chrome Storage（持久化）
+- 有后端时自动同步到 KuzuDB
+- 支持手动导出 CSV 备份
+
+### Q: 支持其他 LLM 吗？
+
+**A:** 支持：
+- 智谱 GLM（推荐）
+- DeepSeek
+- OpenAI GPT
+
+在"设置"中切换即可。
+
+### Q: 可以商用吗？
+
+**A:** 可以！本项目采用 MIT License，允许商业用途。
+
+---
 
 ## 🤝 贡献
 
 欢迎提交 Issue 和 Pull Request！
 
-### 已知问题
+### 开发环境搭建
 
-- Chrome Storage 容量限制为 10MB（已实现自动清理）
-- 后端服务需要手动启动（已实现离线降级）
+```bash
+# 安装依赖
+npm install
 
-### TODO
+# 开发模式
+npm run dev
 
-- [ ] 发现性功能 UI（情感分析/KOL 识别/趋势检测）
-- [ ] 批量筛选功能
-- [ ] 数据导出增强（JSON/RSS）
-- [ ] 多设备同步
+# 构建
+npm run build
+
+# 测试
+npm run test:e2e
+```
 
 ---
 
-**Social Scraper Pro v2.2** - 即使离线，也能高效抓取！
+## 📄 许可证
+
+MIT License
+
+---
+
+## 📞 支持
+
+- **文档：** [README.md](README.md)
+- **测试报告：** [tests/TEST_REPORT.md](tests/TEST_REPORT.md)
+- **问题反馈：** GitHub Issues
+- **讨论区：** GitHub Discussions
+
+---
+
+**Twitter Scraper Pro v2.2** - 让社交媒体数据挖掘变得简单 🐦
+
+最后更新：2026-02-25
